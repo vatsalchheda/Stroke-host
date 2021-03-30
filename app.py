@@ -1,4 +1,3 @@
-
 from flask import Flask,request
 import pickle
 import numpy as np
