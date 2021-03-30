@@ -32,7 +32,7 @@ def predict():
     preds = RandomClassifier.predict(OH_X)
     output = str(preds[0])
       
-    return render_template('index.html',prediction_text=output)
+    return output
 
 if __name__ == "__main__":
     app.run(debug=True)
