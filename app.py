@@ -1,16 +1,18 @@
-from flask import Flask,request
+from flask import Flask,render_template,request
 import pickle
 import numpy as np
 import pandas as pd
-app = Flask(__name__)
 
 RandomClassifier = pickle.load(open('RandomForestmodel.pkl','rb'))
 fs = pickle.load(open('featurescale.pkl','rb'))
 OH_Encoder = pickle.load(open('OH_Encoder.pkl','rb'))
 
+
+app = Flask(__name__)
+
 @app.route("/")
 def index():
-    return 'This is the homepage'
+    return '<h1>Hellew</h1>'
 
 @app.route("/predict",methods=["POST"])
 
@@ -30,10 +32,7 @@ def predict():
     preds = RandomClassifier.predict(OH_X)
     output = str(preds[0])
       
-    return output
-    
-
+    return render_template('index.html',prediction_text=output)
 
 if __name__ == "__main__":
     app.run(debug=True)
-    
